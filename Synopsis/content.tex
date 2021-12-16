@@ -20,7 +20,7 @@
 
 \input{common/characteristic} % Характеристика работы по структуре во введении и в автореферате не отличается (ГОСТ Р 7.0.11, пункты 5.3.1 и 9.2.1), потому её загружаем из одного и того же внешнего файла, предварительно задав форму выделения некоторым параметрам
 
-Диссертационная работа была выполнена при поддержке грантов \dots \fixme{добавить гранты}
+Диссертационная работа была выполнена финансовой поддержке РФФИ, проект <<Численное исследование влияния нестабильности потоков жидкого металла под воздействием бегущего магнитного поля>>, номер 20-38-90237.
 
 %\underline{\textbf{Объем и структура работы.}} Диссертация состоит из~введения,
 %четырех глав, заключения и~приложения. Полный объем диссертации
@@ -44,7 +44,7 @@
 
 \begin{equation*}
     \frac{\partial (\Delta \widetilde{p}_{эм})} {\partial \widetilde{Q}} > \frac{\partial (\Delta \widetilde{p}_{ж})} {\partial \widetilde{Q}},
-\end{equation*}, 
+\end{equation*}
 где число Стюарда определяется $N = \frac{\sigma B_{0}^2 U_{с} L}{2K_{n}}$ с помощью характерных значений пространства $L_0$, магнитной индукции $B_{0}$, скорости магнитного поля $U_{с}$, $\sigma$ - электропроводность среды и функция $K_{n}$, описывающая изменения давления в зависимости от скорости. После ряда математических преобразований можно записать значение магнитного числа Рейнольдса при котором возникает неустойчивость потока в зависимости от числа $n$, описывающее поведение потока в функции $K_{n}$, 
 \begin{equation*}
     Rm > \frac{1}{1-\widetilde{Q}} \sqrt{\frac{n+(1-n) \widetilde{Q}}{(n+1)\widetilde{Q}-n}}.
@@ -53,7 +53,7 @@
 
 \begin{figure}[h]
 	\centerfloat{
-	\includegraphics[width=0.5\linewidth]{Synopsis/images/pQ_ru.png}
+	\includegraphics[width=0.5\linewidth]{Synopsis/images/part1/pQ_ru.png}
 	}
 	\caption{Сравнение разработанных конструкций механических (синий цвет) и индукционных насосов (красный цвет).}
 	\label{fig:intreting_pq}
@@ -79,7 +79,7 @@
 
 \begin{figure}[h]
 	\centerfloat{
-	\includegraphics[width=0.3\linewidth]{Synopsis/images/GeneralChartFlow_ru.png}
+	\includegraphics[width=0.3\linewidth]{Synopsis/images/part2/GeneralChartFlow_ru.png}
 	}
 	\caption{Структурная схема взаимодействия программ для расчета задач.}
 	\label{fig:solver}
@@ -89,23 +89,26 @@
 
 \begin{figure}[h]
 	\centerfloat{
-	\includegraphics[width=1\linewidth]{Synopsis/images/2D_comparisions.png}
+	\includegraphics[width=1\linewidth]{Synopsis/images/part2/2D_comparisions.png}
 	}
 	\caption{Сравнение распределения скорости между стенками перпендикулярными магнитному полю а) сравнение разных подходов к решению двухмерной постановки задачи при числах Гартмана 1 и 20; б) результаты полученные с помощью решателя EOF для двухмерной и трехмерной постановки задачи при числах Гартмана 1 и 20.}
 	\label{fig:comparision}
 	
 \end{figure}
 
-\begin{table}[]
-\caption{Сравнение времени расчета задачи потока проводящей жидкости в прямоугольном канале под воздействием магнитного поля в различных численных пакетах}
-\begin{tabular}{|l|l|l|l|l|}
-\hline
-Используемый программный пакет & 2 ядра        & 4 ядра       & 8  ядер    & 12   ядер   \\ \hline
-OpenFOAM                       & 250 сек  & 132 сек  & 89 сек  & 93 сек  \\ \hline
-Библиотека EOF                 & 1992 сек & 1080 сек & 757 сек & 639 сек \\ \hline
-Comsol                         & 250  мни & -        & 48 мин  & -       \\ \hline
-ANSYS                          & 40 мин   & -        & 30 мин  & -       \\ \hline
-\end{tabular}
+\begin{table}
+	\centering
+	\captionsetup{justification=centering}
+	\caption{Сравнение времени расчета задачи потока проводящей жидкости в прямоугольном канале под воздействием магнитного поля в различных численных пакетах}
+	\begin{tabular}{llccllcc}
+		\toprule	
+			Программный пакет & 2 ядра        & 4 ядра       & 8  ядер    & 12   ядер  \\
+			\midrule
+			OpenFOAM                       & 250 сек  & 132 сек  & 89 сек  & 93 сек  \\ \hline
+			Библиотека EOF                 & 1992 сек & 1080 сек & 757 сек & 639 сек \\ \hline
+			Comsol                         & 250  мни & -        & 48 мин  & -       \\ \hline
+			ANSYS                          & 40 мин   & -        & 30 мин  & -       \\ \hline
+	\end{tabular}
 \label{tab:comparision}
 \end{table}
 
@@ -123,7 +126,7 @@ ANSYS                          & 40 мин   & -        & 30 мин  & -       \
 Эффект входа-выхода был исключен из модели искусственным занижением электропроводности в расчетах для получения распределения плотности тока, но с пренебрежимо малыми значениями для того чтобы создать усилия. При расчете усилий плотности тока умножаются на понижающий коэффициент. Влияние поперечного краевого эффекта изменялось за счет умножение, компонент плотности, которые не создают тяговые усилия, на нулевые значения. Исследуемая область представляет собой прямоугольный канал 100мм x 100мм x 500 мм с Пуазейлевским распределением скорости в начальный момент времени (Рис.~\ref{fig:model}). Начальные условия для задачи скорости получены из предварительного расчета этого канала без магнитного поля. На расстоянии 100 мм от каждой стенки действует магнитное поле перпендикулярное направлению движения потока жидкости. Магнитное поле описывается уравнением $\underline{\mathbf{B}} = \mathbf{B} e^{j(\omega - \varphi - \alpha x)}$.
 \begin{figure}[h]
 	\centerfloat{
-	\includegraphics[width=0.5\linewidth]{Synopsis/images/Description_ru.png}
+	\includegraphics[width=0.5\linewidth]{Synopsis/images/part3/Description_ru.png}
 	}
 	\caption{Описание модели.}
 	\label{fig:model}
@@ -135,12 +138,12 @@ ANSYS                          & 40 мин   & -        & 30 мин  & -       \
 	\centerfloat{
 	\begin{subfigure}[b]{0.5\textwidth}
          \centering
-         \includegraphics[width=\textwidth]{Synopsis/images/ideal_velocity_z_ru.png}
+         \includegraphics[width=\textwidth]{Synopsis/images/part3/ideal_velocity_z_ru.png}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.5\textwidth}
          \centering
-         \includegraphics[width=\textwidth]{Synopsis/images/ideal_velocity_Y_ru.png}
+         \includegraphics[width=\textwidth]{Synopsis/images/part3/ideal_velocity_Y_ru.png}
     \end{subfigure}
 	}
 	
@@ -155,32 +158,32 @@ ANSYS                          & 40 мин   & -        & 30 мин  & -       \
 	\centering{
 	\begin{subfigure}[b]{0.3\textwidth}
          \centering
-         \includegraphics[width=\textwidth]{Synopsis/images/y_velocity_st_1.png}
+         \includegraphics[width=\textwidth]{Synopsis/images/part3/y_velocity_st_1.png}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.3\textwidth}
          \centering
-         \includegraphics[width=\textwidth]{Synopsis/images/y_velocity_st_5.png}
+         \includegraphics[width=\textwidth]{Synopsis/images/part3/y_velocity_st_5.png}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.3\textwidth}
          \centering
-         \includegraphics[width=\textwidth]{Synopsis/images/y_velocity_st_20.png}
+         \includegraphics[width=\textwidth]{Synopsis/images/part3/y_velocity_st_20.png}
     \end{subfigure}
     \vfill
 	\begin{subfigure}[b]{0.3\textwidth}
          \centering
-         \includegraphics[width=\textwidth]{Synopsis/images/z_velocity_st_1.png}
+         \includegraphics[width=\textwidth]{Synopsis/images/part3/z_velocity_st_1.png}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.3\textwidth}
          \centering
-         \includegraphics[width=\textwidth]{Synopsis/images/z_velocity_st_5.png}
+         \includegraphics[width=\textwidth]{Synopsis/images/part3/z_velocity_st_5.png}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.3\textwidth}
          \centering
-         \includegraphics[width=\textwidth]{Synopsis/images/z_velocity_st_20.png}
+         \includegraphics[width=\textwidth]{Synopsis/images/part3/z_velocity_st_20.png}
     \end{subfigure}
 	
 	}
@@ -194,7 +197,7 @@ ANSYS                          & 40 мин   & -        & 30 мин  & -       \
 
 \begin{figure}[h]
 	\centerfloat{
-	\includegraphics[width=0.9\linewidth]{Synopsis/images/vortexi.png}
+	\includegraphics[width=0.9\linewidth]{Synopsis/images/part3/vortexi.png}
 	}
 	\caption{Движение вихря потока вслед за бегущим полем.}
 	\label{fig:motion_vortex}
@@ -205,7 +208,7 @@ ANSYS                          & 40 мин   & -        & 30 мин  & -       \
 
 \begin{figure}[h]
 	\centerfloat{
-	\includegraphics[width=0.9\linewidth]{Synopsis/images/velocity.png}
+	\includegraphics[width=0.9\linewidth]{Synopsis/images/part3/velocity.png}
 	}
 	\caption{Формирование вихрей в идеализированном случаи.}
 	\label{fig:induced_vortex}
@@ -217,11 +220,21 @@ ANSYS                          & 40 мин   & -        & 30 мин  & -       \
 
 \begin{figure}[h]
 	\centerfloat{
-		\includegraphics[width=1\linewidth]{Synopsis/images/Magnetic pressure_ru.png}
+		\includegraphics[width=1\linewidth]{Synopsis/images/part3/Magnetic pressure_ru.png}
 	}
 	\caption{Магнитное давление в зависимости от расхода жидкости.}
 	\label{fig:pq_magnetic}
 \end{figure}
+
+
+\begin{figure}[h]
+	\centerfloat{
+		\includegraphics[width=1\linewidth]{Synopsis/images/part3/map_vortex_2d.png}
+	}
+	\caption{Картина возникновения вихрей. Синий цвет -- устойчивое ламинарное состояние, зеленый -- локальные возмущения, желтый -- локальные устойчивые вихри, красный -- сильная неустойчивость.}
+	\label{fig:pq_magnetic}
+\end{figure}
+
 
 
 В \underline{\textbf{четвертой главе}} проведен анализ влияния тепловых процессов на поведение потока жидкости в прямоугольном канале. Хорошо известный факт, что коэффициент полезного действия в электромагнитных насосах не высокий, поэтому большая часть энергии преобразуется в тепловую. В данной работе анализируется влияние тепловых явлений на поведение потока. На Рис.~\ref{fig:heat_velocity} показаны распределения скорости в зависимости от разницы температур между стенками, к которым приложено магнитное поле. Также на этих графиках анализируется влияние Джоулевого нагрева с помощью сравнения распределения скорости. Показано, что Джоулев нагрев значительно воздействует на профиль скорости, чем на распределение температур. Разница между результатами с учетом источника нагрева и без составляет около 5~\%, а для распределения температур не превыше 0.01~\%, но даже это не значительное изменение приводит к значительным колебаниям скорости потока жидкости. Чем выше разница температур между стенками, тем сильнее влияние джоулева тепла на скорость потока. 
@@ -230,12 +243,12 @@ ANSYS                          & 40 мин   & -        & 30 мин  & -       \
 	\centering{
 	\begin{subfigure}[b]{0.48\textwidth}
          \centering
-         \includegraphics[width=\textwidth]{Synopsis/images/heat_transfer/y_Velocity_ru.png}
+         \includegraphics[width=\textwidth]{Synopsis/images/part4/y_Velocity_ru.png}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.48\textwidth}
          \centering
-         \includegraphics[width=\textwidth]{Synopsis/images/heat_transfer/z_Velocity_ru.png}
+         \includegraphics[width=\textwidth]{Synopsis/images/part4/z_Velocity_ru.png}
     \end{subfigure}
 	}
 \caption{Относительная скорость между стенками (а) перпендикулярными и (б) параллельными магнитному полю с различными значениями разницы температур между перпендикулярными стенками}
@@ -246,7 +259,7 @@ ANSYS                          & 40 мин   & -        & 30 мин  & -       \
 
 \begin{figure}[h]
 	\centering{
-	\includegraphics[width=\textwidth]{Synopsis/images/mesh.png}
+	\includegraphics[width=\textwidth]{Synopsis/images/part5/mesh.png}
 	}
 	\caption{Варианты сеток: а) однородная мелкая сетка (80х80х200); б) однородная более крупная сетка (50х50х100); б) неоднородная более крупная сетка (50х50х100)}
 	\label{fig:mesh}
@@ -254,19 +267,10 @@ ANSYS                          & 40 мин   & -        & 30 мин  & -       \
 
 \begin{figure}[h]
 	\centering{
-		\includegraphics[width=\textwidth]{Synopsis/images/outlet_contours_dif_models.png}
+		\includegraphics[width=\textwidth]{Synopsis/images/part5/outlet_contours_dif_models.png}
 	}
 	\caption{Распределение скорости в поперечном сечении на выходе из активной зоны магнитного поля: а) однородная мелкоячеистая LES; б) неоднородная более крупная сетка LES; в) однородная более крупная сетка LES; г) равномерная более грубая сетка $ k- \omega~SST $;}
 	\label{fig:surf_velocity_models}
-\end{figure}
-
-
-\begin{figure}[h]
-	\centering{
-		\includegraphics[width=\textwidth]{Synopsis/images/outlet_contours.png}
-	}
-	\caption{Распределение скорости в поперечном сечении: а) мелкоячеистая PIMPLE с контролем допуска; б) более грубая неоднородная сетка PIMPLE с допуском контроля; в) более грубая неоднородная сетка PIMPLE с 50 внешними итерациями; г) более грубая неоднородная сетка PISO при числе Куранта, равном 1, и 1 внутренней итерации; д) более грубая неоднородная сетка PISO при числе Куранта 0,5 и 2 внутренних итерациях }
-	\label{fig:surf_velocity}
 \end{figure}
 
 
